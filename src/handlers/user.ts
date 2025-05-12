@@ -2,8 +2,6 @@ import { RequestHandler } from "express";
 import { AppDataSource } from "../db/database";
 import { User } from "../db/models/user";
 import { Ticket } from "../db/models/ticket";
-import { Movie } from "../db/models/movie";
-import { Session } from "../db/models/session";
 
 /**
  * @swagger

@@ -253,7 +253,6 @@ export const refreshToken: RequestHandler = async (req, res) => {
         try {
             payload = verify(refreshToken, jwtSecret);
         } catch (err) {
-            console.error("❌ Failed to verify refresh token:", err);
             res.status(401).send({ message: "Expired or invalid refresh token" });
             return;
         }
@@ -270,7 +269,6 @@ export const refreshToken: RequestHandler = async (req, res) => {
 
         res.status(200).send({ access_token: newAccessToken });
     } catch (error) {
-        console.error("❌ Internal error in refreshToken:", error);
         res.status(500).send({ message: "Internal server error" });
     }
 };

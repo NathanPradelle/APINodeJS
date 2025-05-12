@@ -13,7 +13,7 @@ export class Movie {
     synopsis: string;
 
     @Column()
-    duration: number; // in minutes
+    duration: number;
 
     @Column("text", { array: true })
     genres: string[];

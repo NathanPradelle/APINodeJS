@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { RequestHandler } from "express";
 import { AppDataSource } from "../db/database";
 import { User } from "../db/models/user";
 
