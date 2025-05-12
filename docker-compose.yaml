@@ -34,7 +34,8 @@ services:
       - DB_PASSWORD=admin
       - DB_USER=admin
       - DB_SYNCHRONISE=true
-      - DB_HOST=postgres
+      - DB_HOST=pjn_postgres
+      - JWT_SECRET=supersecret123
     depends_on:
       - pjn_postgres
 

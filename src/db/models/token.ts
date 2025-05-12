@@ -5,17 +5,20 @@ import { User } from "./user";
 export class Token {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
-    @Column()
+    @Column({ type: "text" })
     token: string;
 
     @ManyToOne(() => User, user => user.tokens)
     user: User;
 
-    constructor(id: number, token: string, user: User) {
-        this.id = id
-        this.token = token
-        this.user = user
+    @Column({ default: false })
+    isRefresh: boolean;
+
+    constructor(token: string, user: User, isRefresh = false) {
+        this.token = token;
+        this.user = user;
+        this.isRefresh = isRefresh;
     }
 }

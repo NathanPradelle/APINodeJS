@@ -1,35 +1,50 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Ticket } from "./ticket";
+import { Transaction } from "./transaction";
 import { Token } from "./token"
 
-@Entity({ name: "user" })
+export enum UserRole {
+    CLIENT = "client",
+    ADMIN = "admin"
+}
+
+@Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id: number
+    id!: number;
 
-    @Column({
-        unique: true
-    })
-    email: string
+    @Column({ unique: true })
+    email: string;
 
     @Column()
-    password: string
+    password: string;
 
-    @CreateDateColumn({ type: "timestamptz" })
-    createdAt: Date
+    @Column({ type: "enum", enum: UserRole, default: UserRole.CLIENT })
+    role: UserRole;
 
-    @UpdateDateColumn({ type: "timestamptz" })
-    updatedAt: Date
+    @Column({ type: "decimal", precision: 10, scale: 2, default: 0 })
+    balance: number;
+
+    @OneToMany(() => Ticket, ticket => ticket.user)
+    tickets!: Ticket[];
+
+    @OneToMany(() => Transaction, transaction => transaction.user)
+    transactions!: Transaction[];
+
+    @CreateDateColumn()
+    createdAt!: Date;
+
+    @UpdateDateColumn()
+    updatedAt!: Date;
 
     @OneToMany(() => Token, token => token.user)
-    tokens: Token[];
+    tokens!: Token[];
 
-
-    constructor(id: number, email: string, password: string, createdAt: Date, updatedAt: Date, tokens: Token[]) {
-        this.id = id
-        this.email = email
-        this.password = password
-        this.createdAt = createdAt
-        this.updatedAt = updatedAt
-        this.tokens = tokens
+    constructor(id: number, email: string, password: string, role: UserRole = UserRole.CLIENT, createdAt: Date, updatedAt: Date) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.balance = 0;
     }
+    
 }
