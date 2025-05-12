@@ -19,6 +19,9 @@ export class Ticket {
     @Column({ default: false })
     isSuperTicket: boolean;
 
+    @Column({ default: 1 })
+    remainingUses: number;
+
     @CreateDateColumn()
     createdAt!: Date;
 
@@ -27,5 +30,6 @@ export class Ticket {
         this.session = session;
         this.isSuperTicket = isSuperTicket;
         this.isUsed = false;
+        this.remainingUses = isSuperTicket ? 10 : 1;
     }
 }

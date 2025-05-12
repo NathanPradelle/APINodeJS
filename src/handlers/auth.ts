@@ -9,6 +9,30 @@ import { sign } from "jsonwebtoken";
 import { Token } from "../db/models/token";
 import { verify } from "jsonwebtoken";
 
+/**
+ * @swagger
+ * /auth/signup:
+ *   post:
+ *     summary: Créer un nouvel utilisateur
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Utilisateur créé
+ *       400:
+ *         description: Email déjà utilisé
+ */
 export const createUser = async(req: Request, res: Response) => {
     try{
         const validation = createUserValidation.validate(req.body)
@@ -42,6 +66,30 @@ export const createUser = async(req: Request, res: Response) => {
     }
 }
 
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Connexion utilisateur
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Connexion réussie
+ *       400:
+ *         description: Identifiants invalides
+ */
 export const login = async (req: Request, res: Response) => {
     try {
         const validation = LoginUserValidation.validate(req.body);
@@ -88,6 +136,20 @@ export const login = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     summary: Obtenir les infos de l'utilisateur connecté
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Détails de l'utilisateur
+ *       404:
+ *         description: Utilisateur non trouvé
+ */
 export const me: RequestHandler = async (req, res) => {
     try {
         const userId = (req as any).userId;
@@ -115,6 +177,18 @@ export const me: RequestHandler = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Déconnexion de l'utilisateur
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Déconnexion réussie
+ */
 export const logout: RequestHandler = async (req, res) => {
     try {
         const userId = (req as any).userId;
@@ -131,7 +205,28 @@ export const logout: RequestHandler = async (req, res) => {
     }
 }
 
-
+/**
+ * @swagger
+ * /auth/refresh:
+ *   post:
+ *     summary: Rafraîchir le token d'accès avec un refresh token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [token]
+ *             properties:
+ *               token:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Nouveau token d'accès
+ *       401:
+ *         description: Token invalide ou expiré
+ */
 export const refreshToken: RequestHandler = async (req, res) => {
     try {
         const { token: refreshToken } = req.body;

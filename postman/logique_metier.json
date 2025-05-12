@@ -1,0 +1,205 @@
+{
+  "info": {
+    "name": "Cinema API - Cas M\u00e9tier",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Billet - solde insuffisant",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": 1,\n  \"isSuperTicket\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Billet - utiliser un super billet",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets/1/use",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets",
+            "1",
+            "use"
+          ]
+        }
+      }
+    },
+    {
+      "name": "S\u00e9ance - achat de billet dans salle maintenance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": 99\n}"
+        }
+      }
+    },
+    {
+      "name": "S\u00e9ance - planifi\u00e9e trop t\u00f4t",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roomId\": 1,\n  \"movieId\": 1,\n  \"startTime\": \"2025-05-15T08:00:00.000Z\",\n  \"endTime\": \"2025-05-15T10:00:00.000Z\"\n}"
+        }
+      }
+    },
+    {
+      "name": "S\u00e9ance - chevauchement m\u00eame salle",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roomId\": 1,\n  \"movieId\": 1,\n  \"startTime\": \"2025-06-01T10:00:00.000Z\",\n  \"endTime\": \"2025-06-01T12:30:00.000Z\"\n}"
+        }
+      }
+    },
+    {
+      "name": "S\u00e9ance - m\u00eame film dans deux salles",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roomId\": 2,\n  \"movieId\": 1,\n  \"startTime\": \"2025-06-01T10:15:00.000Z\",\n  \"endTime\": \"2025-06-01T12:45:00.000Z\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin - voir d\u00e9tails d'un utilisateur",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/users/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -34,7 +34,7 @@ export class Room {
     createdAt!: Date;
 
     @UpdateDateColumn()
-    updatedAt!: Date;
+    updatedAt!  : Date;
 
     constructor(
         name: string,

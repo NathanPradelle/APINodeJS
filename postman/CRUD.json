@@ -1,0 +1,677 @@
+{
+  "info": {
+    "name": "Cinema API - FULL ROUTE TEST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/signup",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "signup"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Refresh",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/refresh",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "refresh"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{refresh_token}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/me",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "me"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/logout",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "logout"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Movies - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/movies",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "movies"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Movies - Get",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/movies/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "movies",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Movies - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/movies",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "movies"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Inception\",\n  \"synopsis\": \"A mind-bending thriller.\",\n  \"duration\": 148,\n  \"genres\": [\n    \"Sci-Fi\",\n    \"Thriller\"\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Movies - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/movies/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "movies",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Inception (Updated)\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Movies - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/movies/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "movies",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rooms - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/rooms",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rooms"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rooms - Get",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/rooms/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rooms",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rooms - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/rooms",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rooms"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Room A\",\n  \"description\": \"Large hall\",\n  \"images\": [\n    \"img1\",\n    \"img2\"\n  ],\n  \"type\": \"3D\",\n  \"capacity\": 100,\n  \"isAccessible\": true,\n  \"isInMaintenance\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "Rooms - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/rooms/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rooms",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Updated description\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Rooms - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/rooms/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "rooms",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sessions - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/sessions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sessions - Get",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/sessions/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sessions - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roomId\": 1,\n  \"movieId\": 1,\n  \"startTime\": \"2025-05-15T18:00:00.000Z\",\n  \"endTime\": \"2025-05-15T20:30:00.000Z\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Sessions - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"endTime\": \"2025-05-15T21:00:00.000Z\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Sessions - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/sessions/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "sessions",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tickets - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tickets - Buy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": 1,\n  \"isSuperTicket\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "Tickets - Use",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/tickets/1/use",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "tickets",
+            "1",
+            "use"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Transactions - List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/transactions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "transactions"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Transactions - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/transactions",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "transactions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 50,\n  \"type\": \"add\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Stats - Global Frequency",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/stats/frequency",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "stats",
+            "frequency"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stats - Room Frequency",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/stats/frequency/room/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "stats",
+            "frequency",
+            "room",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stats - Period Frequency",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/stats/frequency/period?from=2025-05-01&to=2025-05-12",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "stats",
+            "frequency",
+            "period?from=2025-05-01&to=2025-05-12"
+          ]
+        }
+      }
+    }
+  ]
+}
